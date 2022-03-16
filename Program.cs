@@ -49,22 +49,32 @@ else
     goto ReadInput2;
 }
 
-//ReadInput3:
-//Console.WriteLine("Enter Output string file name:");
 
-//string outputfileName = Console.ReadLine();
+//string[] lines = File.ReadAllLines(Path.Combine(pathToFiles, inputfileName));
+List<string> linesList = new List<string>();
+try
+{
+    using (StreamReader sr = new StreamReader(Path.Combine(pathToFiles, inputfileName)))
+    {
+        while (sr.Peek() >= 0)
+        {
+            // Console.WriteLine(sr.ReadLine());
+            string indLine = sr.ReadLine().ToString();    
+            linesList.Add(indLine);
+        }
+    }
+}
+catch (Exception e)
+{
+    Console.WriteLine(e.Message);
+}
 
-//if (string.IsNullOrEmpty(outputfileName))
-//{
-//    goto ReadInput3;
-//}
-
-string[] lines = File.ReadAllLines(Path.Combine(pathToFiles, inputfileName));
-//string[] lines = File.ReadAllLines(Path.Combine(pathToFiles, "sampleStringInput.txt"));
 //Exceute function to format input string from a text file
+string[] lines = linesList.ToArray();
 formatSampleInput(lines, maxLineLength);
+//formatSampleInput(lines, maxLineLength);
 
- static void formatSampleInput(string[] inp, int len)
+static void formatSampleInput(string[] inp, int len)
 {
     int pos = 0;
     StringBuilder outputString = new StringBuilder();
