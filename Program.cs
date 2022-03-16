@@ -50,27 +50,10 @@ else
 }
 
 
-//string[] lines = File.ReadAllLines(Path.Combine(pathToFiles, inputfileName));
-List<string> linesList = new List<string>();
-try
-{
-    using (StreamReader sr = new StreamReader(Path.Combine(pathToFiles, inputfileName)))
-    {
-        while (sr.Peek() >= 0)
-        {
-            // Console.WriteLine(sr.ReadLine());
-            string indLine = sr.ReadLine().ToString();    
-            linesList.Add(indLine);
-        }
-    }
-}
-catch (Exception e)
-{
-    Console.WriteLine(e.Message);
-}
+string[] lines = File.ReadAllLines(Path.Combine(pathToFiles, inputfileName));
+
 
 //Exceute function to format input string from a text file
-string[] lines = linesList.ToArray();
 formatSampleInput(lines, maxLineLength);
 //formatSampleInput(lines, maxLineLength);
 
