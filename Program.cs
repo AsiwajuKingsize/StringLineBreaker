@@ -4,10 +4,20 @@ using System.IO;
 using System.Text;
 
 
+ReadInput1:
+Console.WriteLine("Enter Input string file name:");
+
+string inputfileName = Console.ReadLine();
+
+if (string.IsNullOrEmpty(inputfileName))
+{
+    goto ReadInput1;
+}
+
 Console.WriteLine("Enter MaximumCharacter per line:");
 
 // Create a string variable and get user input from the keyboard and store it in the variable
-ReadInput:
+ReadInput2:
 string maxStringLength = Console.ReadLine();
 int maxLineLength=0;
 
@@ -21,21 +31,32 @@ if (!string.IsNullOrEmpty(maxStringLength))
     {
         Console.WriteLine("Enter valid MaximumCharacter per line:");
         //Console.ReadLine();
-        goto ReadInput;
+        goto ReadInput2;
     }
    // int maxLineLength = Convert.ToInt32(maxStringLength);
 }
 else
 {
     Console.WriteLine("Enter valid  MaximumCharacter per line:");
-    goto ReadInput;
+    goto ReadInput2;
 }
+
+//ReadInput3:
+//Console.WriteLine("Enter Output string file name:");
+
+//string outputfileName = Console.ReadLine();
+
+//if (string.IsNullOrEmpty(outputfileName))
+//{
+//    goto ReadInput3;
+//}
 
 //Get input File from user computer MyDocuments special Folder
 string pathToFiles = System.Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-string[] lines = File.ReadAllLines(Path.Combine(pathToFiles, "sampleStringInput.txt"));
+string[] lines = File.ReadAllLines(Path.Combine(pathToFiles, inputfileName));
+//string[] lines = File.ReadAllLines(Path.Combine(pathToFiles, "sampleStringInput.txt"));
 //Exceute function to format input string from a text file
- formatSampleInput(lines, maxLineLength);
+formatSampleInput(lines, maxLineLength);
 
  static void formatSampleInput(string[] inp, int len)
 {
@@ -51,7 +72,7 @@ string[] lines = File.ReadAllLines(Path.Combine(pathToFiles, "sampleStringInput.
         {
             if (line.Length > len)
             {
-                //pos = len;
+               
                 while(pos < (line.Length) - pos)
                 {
                     outputString.AppendLine(line.Substring(pos,len));
@@ -74,6 +95,7 @@ string[] lines = File.ReadAllLines(Path.Combine(pathToFiles, "sampleStringInput.
     
     Console.WriteLine(outputString.ToString());
     string pathToFiles = System.Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+    //string fileNameExtender = DateTime.Now.ToString("yyyy-mm-dd");
     using (StreamWriter outputFile = new StreamWriter(Path.Combine(pathToFiles, "SampleStringOutput.txt")))
     {
         outputFile.WriteLine(outputString.ToString());
