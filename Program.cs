@@ -55,7 +55,6 @@ string[] lines = File.ReadAllLines(Path.Combine(pathToFiles, inputfileName));
 
 //Exceute function to format input string from a text file
 formatSampleInput(lines, maxLineLength);
-//formatSampleInput(lines, maxLineLength);
 
 static void formatSampleInput(string[] inp, int len)
 {
@@ -98,8 +97,6 @@ static void formatSampleInput(string[] inp, int len)
     {
         outputFile.WriteLine(outputString.ToString());
     }
-     //return outputString.ToString();
-
   
 }
 
