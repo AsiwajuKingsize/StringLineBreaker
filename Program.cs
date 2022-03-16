@@ -9,8 +9,16 @@ Console.WriteLine("Enter Input string file name:");
 
 string inputfileName = Console.ReadLine();
 
+//Get input File from user computer MyDocuments special Folder
+string pathToFiles = System.Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
 if (string.IsNullOrEmpty(inputfileName))
 {
+    goto ReadInput1;
+}
+
+if (!File.Exists(Path.Combine(pathToFiles, inputfileName)))
+{
+    Console.WriteLine("Enter a file name that exists with the file extension:");
     goto ReadInput1;
 }
 
@@ -51,8 +59,6 @@ else
 //    goto ReadInput3;
 //}
 
-//Get input File from user computer MyDocuments special Folder
-string pathToFiles = System.Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
 string[] lines = File.ReadAllLines(Path.Combine(pathToFiles, inputfileName));
 //string[] lines = File.ReadAllLines(Path.Combine(pathToFiles, "sampleStringInput.txt"));
 //Exceute function to format input string from a text file
