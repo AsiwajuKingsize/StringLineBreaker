@@ -101,8 +101,7 @@ formatSampleInput(lines, maxLineLength);
     
     Console.WriteLine(outputString.ToString());
     string pathToFiles = System.Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-    //string fileNameExtender = DateTime.Now.ToString("yyyy-mm-dd");
-    using (StreamWriter outputFile = new StreamWriter(Path.Combine(pathToFiles, "SampleStringOutput.txt")))
+    using (StreamWriter outputFile = new StreamWriter(Path.Combine(pathToFiles, "SampleStringLineBreakerOutput.txt")))
     {
         outputFile.WriteLine(outputString.ToString());
     }
